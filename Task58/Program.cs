@@ -40,6 +40,8 @@ int columnArrayB = InputInt("columns matrix B");
 int[,] arrayA = new int[rowArrayA, columnArrayA];
 int[,] arrayB = new int[rowArrayB, columnArrayB];
 
+FillArr2LinesRandom(arrayA);
+FillArr2LinesRandom(arrayB);
 PrintArray2Lines(arrayA);
 PrintArray2Lines(arrayB);
 
@@ -53,5 +55,9 @@ for (int i = 0; i< arrayMultipleAB.GetLength(0); i++)
         {
             temp+=arrayA[i,k]*arrayB[k,j];
         }
+        arrayMultipleAB[i,j] = temp;
     }
 }
+
+PrintArray2Lines(arrayMultipleAB);
+
