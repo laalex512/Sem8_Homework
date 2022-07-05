@@ -46,18 +46,23 @@ PrintArray2Lines(arrayA);
 PrintArray2Lines(arrayB);
 
 int[,] arrayMultipleAB = new int[rowArrayA, columnArrayB];
-for (int i = 0; i< arrayMultipleAB.GetLength(0); i++)
+if (columnArrayA == rowArrayB)
 {
-    for(int j = 0; j< arrayMultipleAB.GetLength(1); j++)
+    for (int i = 0; i < arrayMultipleAB.GetLength(0); i++)
     {
-        int temp =0;
-        for (int k=0; k<arrayA.GetLength(1); k++)
+        for (int j = 0; j < arrayMultipleAB.GetLength(1); j++)
         {
-            temp+=arrayA[i,k]*arrayB[k,j];
+            for (int k = 0; k < arrayA.GetLength(1); k++)
+            {
+                arrayMultipleAB[i, j] += arrayA[i, k] * arrayB[k, j];
+            }
         }
-        arrayMultipleAB[i,j] = temp;
     }
-}
 
-PrintArray2Lines(arrayMultipleAB);
+    PrintArray2Lines(arrayMultipleAB);
+}
+else
+{
+    Console.WriteLine("Matrix impossible to multiply");
+}
 
