@@ -12,35 +12,42 @@ int InputInt(string consoleMessage)
 int rowArray = InputInt("rows array");
 int columnArray = InputInt("columns array");
 int floorArray = InputInt("floors array");
-int[,,] arrayThreeLinesRndNums = new int[rowArray,columnArray,floorArray];
+int[,,] arrayThreeLinesRndNums = new int[rowArray, columnArray, floorArray];
 
 int[] arrayParticipationNums = new int[90];                              // массив использованных чисел
-int currentIndexParticipation = 0;                                      
+int currentIndexParticipation = 0;
 
-for (int i = 0; i < arrayThreeLinesRndNums.GetLength(0); i++)
+if (rowArray * columnArray * floorArray <= 90)
 {
-    for (int j = 0; j < arrayThreeLinesRndNums.GetLength(1); j++)
+    for (int i = 0; i < arrayThreeLinesRndNums.GetLength(0); i++)
     {
-        for (int k = 0; k < arrayThreeLinesRndNums.GetLength(2); k++)
+        for (int j = 0; j < arrayThreeLinesRndNums.GetLength(1); j++)
         {
-            while( true)
+            for (int k = 0; k < arrayThreeLinesRndNums.GetLength(2); k++)
             {
-                int tempNumber = new Random().Next(10,100);
-                bool canUseNumber = true;
-                for (int l = 0; l < currentIndexParticipation; l++)
+                while (true)
                 {
-                    if(tempNumber == arrayParticipationNums[l])
-                        canUseNumber = false;
+                    int tempNumber = new Random().Next(10, 100);
+                    bool canUseNumber = true;
+                    for (int l = 0; l < currentIndexParticipation; l++)
+                    {
+                        if (tempNumber == arrayParticipationNums[l])
+                            canUseNumber = false;
+                    }
+                    if (canUseNumber)
+                    {
+                        arrayThreeLinesRndNums[i, j, k] = tempNumber;
+                        arrayParticipationNums[currentIndexParticipation] = tempNumber;
+                        currentIndexParticipation++;
+                        break;
+                    }
                 }
-                if (canUseNumber)
-                {
-                    arrayThreeLinesRndNums[i,j,k] = tempNumber;
-                    arrayParticipationNums[currentIndexParticipation] = tempNumber;
-                    currentIndexParticipation++;
-                    break; 
-                }
+                Console.WriteLine($"{arrayThreeLinesRndNums[i, j, k]} - [{i},{j},{k}]");
             }
-            Console.WriteLine($"{arrayThreeLinesRndNums[i,j,k]} - [{i},{j},{k}]" );
         }
     }
+}
+else
+{
+    Console.WriteLine("Array is too big");
 }
